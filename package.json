@@ -1,0 +1,14 @@
+{
+  "name": "mevn",
+  "version": "1.0.0",
+  "description": "Mevn start",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fxjs": "^0.21.3"
+  }
+}
