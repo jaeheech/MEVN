@@ -18,6 +18,8 @@ app.use((req,res,next)=>{
 app.listen(PORT,()=>{
     console.log(`서버가 생성되었습니다.${PORT}`)
 })
+
+
 /*
 서버가 생성되었습니다.3000
 1 Time: 1686797375514

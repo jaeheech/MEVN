@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        margin: auto;
+        width: 300px;
+        background-color: #eeeff1;
+        border-radius: 5px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: none;
+      }
+
+      .in {
+        margin-bottom: 10px;
+      }
+
+      #btn {
+        background-color: #1bbc9b;
+        margin-bottom: 30px;
+        color: white;
+      }
+
+      a {
+        text-decoration: none;
+        color: #9b9b9b;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="info" method="post">
+      <fieldset>
+        <legend>로그인 창</legend>
+        <div>
+          <input type="text" class="in" placeholder="ID" name="id" /> <br />
+          <input type="password" class="in" placeholder="PASSWORD" name="pw" />
+          <input type="submit" id="btn" value="로그인" />
+          <input type="reset" id="btn" value="초기화" />
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>
