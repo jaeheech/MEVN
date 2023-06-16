@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>할일 목록 만들기</title>
+    <style>
+      .head {
+        font-size: 30px;
+        color: powderblue;
+        text-align: center;
+
+        justify-content: center;
+        align-items: center;
+      }
+      .bt0 {
+        background-color: cornflowerblue;
+        font-size: 20px;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5px;
+        color: white;
+      }
+      .text {
+        width: 90%;
+        padding: 10px;
+        border-radius: 20px;
+        background-color: beige;
+        color: lightpink;
+        font-weight: bold;
+        font-size: 30px;
+        justify-content: center;
+        align-items: center;
+      }
+      .bt2 {
+        background-color: cornflowerblue;
+        font-size: 20px;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5px;
+        color: red;
+      }
+      .check1 {
+        width: 20px;
+        height: 20px;
+      }
+      .span {
+        font-weight: bold;
+        font-size: 25px;
+        color: black;
+      }
+      .bt1 {
+        background-color: cornflowerblue;
+        font-size: 20px;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5px;
+        color: white;
+      }
+      /* body { */
+      /* background-color: bisque; */
+      /* background-image: url(https://img.freepik.com/premium-vector/blank-closed-realistic-spiral-notepad-mockup-isolated-on-white-background-vector-illustration_165488-2941.jpg?w=1380); */
+
+      .div1 {
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        background-color: bisque;
+        width: 100%;
+        height: auto;
+        display: flex;
+        margin: 0 auto;
+        border-radius: 10px;
+      }
+      .div {
+        /* max-width: 900px; */
+        justify-content: center;
+        text-align: center;
+      }
+      .div1:hover {
+        background-color: darksalmon;
+      }
+    </style>
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const div = document.createElement("div");
+        const h1 = document.createElement("h1");
+        const input = document.createElement("input");
+        const button = document.createElement("button"); //추가하기
+        const hr = document.createElement("hr");
+        const button2 = document.createElement("button"); //전체삭제
+
+        new TypeIt(h1)
+          .pause(1000) //1초 기다림
+          .delete(4, { delay: 1000 }) // 1초 기다렸다 6글자 삭제
+          .type("나의 할일 목록") // 고맙습니다 타이핑
+          .go(); // 실행
+
+        document.body.append(h1);
+        document.body.append(div);
+        div.append(input, button, button2, hr);
+
+        h1.className = "head";
+        input.className = "text";
+        button.className = "bt0";
+        button2.className = "bt2";
+        div.className = "div";
+
+        h1.textContent = "할 일 목록";
+        button.textContent = "추가하기";
+        button2.textContent = "전체삭제";
+
+        /*추가하기 동작 1단계*/
+        let ct = 0;
+        const arr = [];
+
+        button.addEventListener("click", (event) => {
+          if (input.value) {
+            const div1 = document.createElement("div");
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "check1";
+            // document.body.appendChild(checkbox);
+            // document.body.appendChild(span);
+            // document.body.appendChild(button1);
+
+            const span = document.createElement("span");
+            span.textContent = input.value;
+            span.className = "span";
+
+            const button1 = document.createElement("button");
+            button1.textContent = "제거하기";
+            button1.style.display = "none";
+
+            arr.push({ id: ct++, data: input.value, check: checkbox.checked });
+
+            localStorage.setItem("id", JSON.stringify(arr));
+            input.value = "";
+
+            button1.className = "bt1";
+            document.body.append(div1);
+            div1.append(checkbox, span, button1);
+            div1.className = "div1";
+
+            //체크박스 체크했을때 할일에 줄그어지는부분
+            const br = document.createElement("br");
+            document.body.appendChild(br);
+            checkbox.addEventListener("click", (event) => {
+              span.style.textDecoration = event.target.checked
+                ? " line-through"
+                : "";
+              span.textContent = "할일완료!!";
+
+              if (checkbox.checked) {
+                button1.style.display = "inline-block";
+              } else {
+                button1.style.display = "none";
+              }
+            });
+            //체크를 해야만 삭제 하기 기능 동작
+
+            button1.addEventListener("click", (event) => {
+              if (checkbox.checked) {
+                document.body.removeChild(div1);
+              } else {
+                alert("박스를 체크하세요.");
+              }
+            });
+
+            //전체 삭제 기능
+
+            button2.addEventListener("click", (event) => {
+              document.body.removeChild(div1);
+            });
+          } else {
+            alert("내용을 입력하세요.");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
