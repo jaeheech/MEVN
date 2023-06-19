@@ -6,16 +6,64 @@
     <title>재희</title>
     <link rel="icon" href="favicon.ico" />
     <link rel="shortcut icon" href="favicon.ico" />
+
+    <style>
+      .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .modal.show {
+        display: block;
+      }
+      .modal-body {
+        position: absolute;
+        top: 20%;
+        left: 35%;
+        min-width: 250px;
+        height: 400px;
+        padding: 20px;
+        text-align: start;
+        background: red;
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+      }
+    </style>
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const bt = document.getElementById("bt");
+        const uname = document.getElementById("uname");
+        const modal = document.querySelector(".modal");
+        const modalBody = document.querySelector(".modal-body");
+
+        bt.addEventListener("click", () => {
+          const div = document.createElement("div");
+          const div1 = document.createElement("div");
+          const span = document.createElement("span");
+          const span1 = document.createElement("span");
+          document.body.appendChild(div).append(div1, span, span1);
+          div.className = "modal";
+          div1.className = "modal-body";
+          span.textContent = `${uname.value}`;
+          modal.classList.add("show");
+        });
+        modal.addEventListener("click", () => modal.classList.remove("show")); -->
+      
+    </script>
   </head>
   <body>
     <h1>서버가 가동되고 있고 html이 서비스 중입니다.</h1>
     <form action="data">
       <div>
-        이름:<input type="text" name="name" /><br />
+        이름:<input type="text" name="name" id="uname" /><br />
         나이:<input type="text" name="age" /><br />
         <textarea name="content" id="" cols="30" rows="10"></textarea><br />
         <input type="reset" />
-        <input type="submit" />
+        <input type="submit" id="bt" />
       </div>
       <img
         src="http://tfjs.site:7902/main/cat1.jpg"

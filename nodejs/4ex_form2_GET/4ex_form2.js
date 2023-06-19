@@ -15,11 +15,19 @@ app.get('/data',(req,res)=>{
     const gender =req.query.gender
     const board =req.query.board
     const date=req.query.date
-   
-    res.redirect('/done.html')
+    console.log(name,age,gender,board,date)
+ 
+    
+
+    
+    
+
+    res.redirect('done.html')
 })
+
 
 app.listen(PORT, () => {
     console.log(`너의 서버는? ${PORT}!`)
 })
 
+   
