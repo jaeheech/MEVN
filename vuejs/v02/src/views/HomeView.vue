@@ -18,7 +18,7 @@
     <button @click="status = !status">토글버튼</button>
     <br />
     <button @click="name2 == '슈퍼맨' ? (name2 = hero) : (name2 = '슈퍼맨')">
-      {{ hero }}을 부를께요.
+      {{ name2 === '슈퍼맨' ? '아이언맨' : '슈퍼맨' }} 부를께요.
     </button>
   </div>
 </template>
