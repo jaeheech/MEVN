@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>재희</title>
+    <style>
+      h1 {
+        color: ivory;
+        background-color: black;
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+      }
+
+      form {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type='text'],
+      textarea,
+      input[type='date'] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      #textarea {
+        height: 150px;
+      }
+
+      input[type='reset'],
+      input[type='submit'] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type='reset']:hover,
+      input[type='submit']:hover {
+        background-color: #45a049;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>서버가 가동되고 있고 html이 서비스 중입니다.</h1>
+    <form action="data" method="post">
+      <div>
+        제목:<input
+          type="text"
+          name="name"
+          placeholder="제목을 입력하세요."
+        /><br />
+        <textarea
+          name="content"
+          id="textarea"
+          cols="30"
+          rows="10"
+          placeholder="내용을 입력하세요."
+        ></textarea
+        ><br />
+        Date: <input type="date" name="date" /><br />
+
+        <input type="reset" />
+        <input type="submit" id="bt" />
+      </div>
+    </form>
+  </body>
+</html>
