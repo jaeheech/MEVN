@@ -28,5 +28,11 @@ export default [
     price: 51000,
     category: '노트북/태블릿',
     delivery_price: 5000
+  },
+  {
+    product_name: '차량용 충전기',
+    price: 72000,
+    category: '노트북/태블릿',
+    delivery_price: 5000
   }
 ]
