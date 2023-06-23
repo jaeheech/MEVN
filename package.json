@@ -13,6 +13,8 @@
     "fs": "^0.0.1-security",
     "fxjs": "^0.21.3",
     "morgan": "^1.10.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "socket.io": "^4.6.2",
+    "soket.io": "^0.0.1-security"
   }
 }
