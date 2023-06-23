@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>3.셀렉터 예제</h1>
     <select name="" id="" v-model="selData">
       <option v-for="city in Object.keys(obj)" :key="city" :value="obj[city]">
         {{ city }}
