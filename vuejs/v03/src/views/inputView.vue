@@ -39,7 +39,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 input {
   width: 100px;
   text-align: right;

@@ -1,9 +1,12 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/strhtml">Strhtml</router-link> |
-    <router-link to="/input">Input</router-link> |
-    <router-link to="/select">Select</router-link> |
+    <router-link to="/strhtml">1.Strhtml</router-link> |
+    <router-link to="/input">2.Input</router-link> |
+    <router-link to="/select">3.Select</router-link> |
+    <router-link to="/checkbox">4.Checkbox</router-link> |
+    <router-link to="/attribute">5.Attribute</router-link> |
+    <router-link to="/bindlist">6.Bindlist</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
   <router-view />
