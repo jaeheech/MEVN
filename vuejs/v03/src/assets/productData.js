@@ -19,14 +19,14 @@ export default [
   },
   {
     product_name: '태블릿PC',
-    price: 520000,
+    price: 32000,
     category: '노트북/태블릿',
     delivery_price: 5000
   },
   {
     product_name: '무선충전기',
-    price: 51000,
+    price: 42000,
     category: '액세서리',
-    delivery_price: 5000
+    delivery_price: 4000
   }
 ]
