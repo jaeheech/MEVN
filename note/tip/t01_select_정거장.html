@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const select = document.getElementById('select')
+      const seo = document.getElementById('seo')
+      const h1 = document.getElementById('h1')
+
+      seo.addEventListener('select', () => {
+        h1.innerHTML = '서면역'
+      })
+    </script>
+  </head>
+  <body>
+    <select name="" id="select">
+      <option value="" id="seo">서면역</option>
+      <option value="">교대역</option>
+      <option value="">사직역</option>
+    </select>
+    <h1 id="h1"></h1>
+  </body>
+</html>

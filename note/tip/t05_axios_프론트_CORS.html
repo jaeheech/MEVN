@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.4.0/dist/axios.min.js"></script>
+    <script>
+      axios
+        .get(
+          //   'https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%82%A0%EC%94%A8'
+          'https://jsonplaceholder.typicode.com/todos/1'
+        )
+        .then(function (res) {
+          console.log('통신결과:' + res)
+          console.log('status:' + res.status)
+          console.log('data:' + res.data)
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
+    </script>
+  </head>
+  <body></body>
+</html>

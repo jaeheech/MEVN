@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let liveChange
+      const exc = async function () {
+        const url =
+          'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD'
+        await fetch(url).then((res) =>
+          res.json().then((data) => (liveChange = data[0].basePrice))
+        )
+
+        const won = document.createElement('input')
+        const span = document.createElement('span')
+        const button = document.createElement('button')
+        const h3 = document.createElement('h3')
+        const p = document.createElement('p')
+        span.textContent = '달러'
+        button.textContent = '변환'
+        h3.textContent = `실시간 환율 : 1달러 = ${liveChange.toLocaleString(
+          'ko-KR'
+        )}원`
+        document.body.append(h3, won, span, button)
+        button.addEventListener('click', () => {
+          if (p) p.textContent = ''
+          let dollar = won.value * liveChange
+          p.textContent = dollar.toLocaleString('ko-KR') + '원'
+          document.body.appendChild(p)
+        })
+        won.addEventListener('keyup', () => {
+          let dollar = won.value * liveChange
+          p.textContent = dollar.toLocaleString('ko-KR') + '원'
+          document.body.appendChild(p)
+        })
+      }
+      exc()
+    })
+  </script>
+  <body></body>
+</html>
