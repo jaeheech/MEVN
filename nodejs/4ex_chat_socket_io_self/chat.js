@@ -18,8 +18,12 @@ io.on('connection', (socket) => {
 })
 
 io.on('connection', (socket) => {
+  io.emit('chat message', 'A user has joined the chat.')
   socket.on('chat message', (msg) => {
     io.emit('chat message', msg)
+    socket.on('disconnect', () => {
+      io.emit('chat message', 'A user has left the chat.') // Emit leave message to everyone
+    })
   })
 })
 

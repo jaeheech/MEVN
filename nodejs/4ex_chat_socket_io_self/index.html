@@ -23,7 +23,7 @@
         display: flex;
         height: 3rem;
         box-sizing: border-box;
-        backdrop-filter: blur(10px);
+        /* backdrop-filter: blur(10px); */
       }
       #input {
         border: none;
@@ -50,12 +50,16 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* 중앙 정렬을 위해 추가 */
       }
       #messages > li {
         background-color: #f2f2f2;
         padding: 10px;
         margin-bottom: 5px;
         border-radius: 5px;
+        max-width: 70%; /* 메시지 너비 제한을 위해 추가 */
       }
       #messages > li:nth-child(odd) {
         background: rgb(248, 244, 7);
@@ -90,6 +94,17 @@
         width: 100%;
         display: table-cell;
       }
+      #messages > li.sent {
+        align-self: flex-end; /* 오른쪽 정렬을 위해 추가 */
+        background-color: #d2e8d6; /* 내가 보낸 메시지 배경색으로 수정 */
+        align-items: flex-end;
+      }
+      #messages > li.received {
+        /* 추가: 왼쪽 정렬 */
+        align-self: flex-start;
+        background-color: #f2f2f2;
+        align-items: flex-start;
+      }
     </style>
   </head>
   <body>
@@ -98,10 +113,12 @@
         <div class="heading">Jae hee</div>
       </div>
       <div class="row">
-        <div class="stuff"></div>
+        <div class="stuff">
+          <ul id="messages"></ul>
+          <!-- 메시지가 중앙에 표시되도록 수정 -->
+        </div>
       </div>
     </div>
-    <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>전송</button>
     </form>
@@ -124,7 +141,14 @@
 
       socket.on('chat message', function (msg) {
         const item = document.createElement('li')
-        item.textContent = msg
+        item.textContent = msg.message
+
+        if (msg.sender === 'me') {
+          item.classList.add('sent')
+        } else {
+          item.classList.add('received')
+        }
+
         messages.appendChild(item)
         window.scrollTo(0, document.body.scrollHeight)
       })

@@ -71,21 +71,19 @@ bot.onText(/^음악$/, async (msg) => {
   }
 })
 
+/*사진 추가 */
 bot.onText(/^박지현/, (msg, match) => {
   const chatId = msg.chat.id
-  //   const resp = match['input'] //메아리
   const resp =
     'AgACAgUAAxkBAAIBt2SjwgyOAixpyhoQSNbae5AWsgyaAAJ-tDEb2zQYVdjtk1w5AgvvAQADAgADbQADLwQ'
-  console.log(resp)
+  //   console.log(resp)
   bot.sendPhoto(chatId, resp)
 })
-
+/*사진 추가 */
 bot.onText(/^이쁜이/, (msg, match) => {
   const chatId = msg.chat.id
-  //   const resp = match['input'] //메아리
   const resp =
     'AgACAgUAAxkBAAIBwWSjw68yqzG5zzu8sHaOz4bQZYkuAAK4tDEb5pIgVeCO4wgJGTirAQADAgADbQADLwQ'
-  console.log(resp)
   bot.sendPhoto(chatId, resp)
 })
 
@@ -93,4 +91,3 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id
   console.log(msg)
 })
-// AgACAgUAAxkBAAIBzWSjxFVPeuFxGl8S0xGr6XhK7plKAAK8tDEb5pIgVViifA7Ip69WAQADAgADcwADLwQ
