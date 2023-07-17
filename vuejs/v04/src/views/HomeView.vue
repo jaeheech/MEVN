@@ -51,7 +51,8 @@ export default {
       date1: new Date().toISOString().substring(0, 10),
       date2: new Date().toISOString().substring(0, 10),
       date3: new Date().toISOString().substring(0, 10),
-      date4: new Date().toISOString().substring(0, 10)
+      date4: new Date().toISOString().substring(0, 10),
+      env1: process.env.VUE_APP.pkey
     }
   },
   methods: {
