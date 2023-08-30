@@ -1,2 +1,2 @@
 
-    minute: '2-digit',
+  const mapUrl = `https://www.google.com/maps?q=${latitude},${longitude}`

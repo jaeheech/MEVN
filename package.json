@@ -29,6 +29,7 @@
     "request": "^2.88.2",
     "socket.io": "^4.6.2",
     "soket.io": "^0.0.1-security",
+    "telegraf": "^4.12.2",
     "xlsx": "^0.18.5",
     "xlsx-populate": "^1.21.0"
   }
