@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>채팅</title>
+    <style>
+      body {
+        margin: 0;
+        padding-bottom: 3rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Helvetica, Arial, sans-serif;
+        background-color: steelblue;
+      }
+
+      #chat {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      #messages {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        clear: both;
+      }
+
+      #inputMessage {
+        width: calc(100% - 80px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+
+      #sendButton {
+        display: inline-block;
+        width: 80px; /* 전송버튼의 폭을 지정합니다. */
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px; /* 전송버튼과 입력칸 사이의 간격을 설정합니다. */
+      }
+
+      #sendButton:hover {
+        background-color: #0056b3;
+      }
+
+      #inputContainer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+      }
+
+      #chatContent {
+        margin-bottom: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chat">
+      <ul id="messages"></ul>
+      <input
+        id="inputMessage"
+        autocomplete="off"
+        onkeydown="handleEnter(event)"
+      />
+      <button id="sendButton">전송</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io()
+
+      socket.on('connect', () => {
+        console.log('서버에 연결되었습니다.')
+
+        const inputMessage = document.getElementById('inputMessage')
+        const sendButton = document.getElementById('sendButton')
+        const messages = document.getElementById('messages')
+
+        sendButton.addEventListener('click', () => {
+          const message = inputMessage.value
+          inputMessage.value = ''
+
+          // 내 메시지를 오른쪽에 추가
+          appendMessage(message, 'right')
+
+          // 서버로 메시지를 보냅니다.
+          socket.emit('newMessage', message)
+        })
+      })
+
+      function appendMessage(message, position) {
+        const messages = document.getElementById('messages')
+        const li = document.createElement('li')
+        li.innerText = message
+        li.style.float = position
+        messages.appendChild(li)
+      }
+
+      // 새로운 메시지를 받았을 때
+      socket.on('newMessage', (data) => {
+        // 자신이 보낸 메시지가 아닌 경우에만 메시지를 추가
+        if (data.position === 'left') {
+          appendMessage(data.message, 'left')
+        }
+      })
+      // Enter 키 이벤트 처리
+      function handleEnter(event) {
+        if (event.key === 'Enter') {
+          sendMessage()
+        }
+      }
+      function sendMessage() {
+        const inputMessage = document.getElementById('inputMessage')
+        const message = inputMessage.value
+        inputMessage.value = ''
+
+        // 내 메시지를 오른쪽에 추가
+        appendMessage(message, 'right')
+
+        // 서버로 메시지를 보냅니다.
+        socket.emit('newMessage', message)
+      }
+    </script>
+  </body>
+</html>

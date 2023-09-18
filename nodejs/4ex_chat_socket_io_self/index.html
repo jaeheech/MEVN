@@ -46,24 +46,6 @@
         font: bold;
       }
 
-      #messages {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* 중앙 정렬을 위해 추가 */
-      }
-      #messages > li {
-        background-color: #f2f2f2;
-        padding: 10px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        max-width: 70%; /* 메시지 너비 제한을 위해 추가 */
-      }
-      #messages > li:nth-child(odd) {
-        background: rgb(248, 244, 7);
-      }
       .wrapper {
         border-spacing: 0px 0px;
         display: table;
@@ -89,21 +71,36 @@
         text-transform: uppercase;
         vertical-align: top;
       }
-
       .stuff {
         width: 100%;
         display: table-cell;
       }
-      #messages > li.sent {
-        align-self: flex-end; /* 오른쪽 정렬을 위해 추가 */
-        background-color: #d2e8d6; /* 내가 보낸 메시지 배경색으로 수정 */
-        align-items: flex-end;
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column; /* 메시지가 아래로 추가되도록 설정 */
       }
-      #messages > li.received {
-        /* 추가: 왼쪽 정렬 */
-        align-self: flex-start;
+
+      #messages > li {
         background-color: #f2f2f2;
-        align-items: flex-start;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        max-width: 70%;
+      }
+
+      #messages > li:nth-child(odd) {
+        background: rgb(248, 244, 7);
+      }
+
+      #messages > li.sent {
+        background-color: #d2e8d6;
+      }
+
+      #messages > li.received {
+        background-color: #f2f2f2;
       }
     </style>
   </head>
@@ -115,7 +112,6 @@
       <div class="row">
         <div class="stuff">
           <ul id="messages"></ul>
-          <!-- 메시지가 중앙에 표시되도록 수정 -->
         </div>
       </div>
     </div>
@@ -134,21 +130,23 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault()
         if (input.value) {
-          socket.emit('chat message', input.value)
+          socket.emit('chat message', {
+            text: input.value,
+            sender: 'me' // 자신의 메시지
+          })
           input.value = ''
         }
       })
-
       socket.on('chat message', function (msg) {
         const item = document.createElement('li')
-        item.textContent = msg.message
+        item.textContent = msg.text
 
         if (msg.sender === 'me') {
           item.classList.add('sent')
         } else {
           item.classList.add('received')
         }
-
+        console.log(item.classList)
         messages.appendChild(item)
         window.scrollTo(0, document.body.scrollHeight)
       })
